@@ -10,28 +10,30 @@ public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     private String name;
     private String addressLine1;
+    private String city;
     private String state;
     private String zip;
 
     public Publisher() {
     }
 
-    public Publisher(String name, String addressLine1, String state, String zip) {
+    public Publisher(String name, String city, String addressLine1, String state, String zip) {
         this.name = name;
         this.addressLine1 = addressLine1;
+        this.city = city;
         this.state = state;
         this.zip = zip;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -41,6 +43,14 @@ public class Publisher {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getAddressLine1() {
@@ -74,11 +84,11 @@ public class Publisher {
 
         Publisher publisher = (Publisher) o;
 
-        return id == publisher.id;
+        return id != null ? id.equals(publisher.id) : publisher.id == null;
     }
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return id != null ? id.hashCode() : 0;
     }
 }
